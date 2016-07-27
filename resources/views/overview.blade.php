@@ -21,5 +21,6 @@
                 Verschil: €0,-
             </h1>
         </div>
+        <a href="{{ url('import') }}" class="form-control btn btn-primary">Importeren</a>
     </div>
 @endsection
