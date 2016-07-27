@@ -11,10 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/', 'FinanceController@index');
+    Route::get('home', 'FinanceController@index');
+    Route::get('import', 'FinanceController@import');
+    Route::post('verwerken', 'FinanceController@process');
+    Route::post('opslaan', 'FinanceController@save');
+});

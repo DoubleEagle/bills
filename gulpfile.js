@@ -11,6 +11,28 @@ var elixir = require('laravel-elixir');
  |
  */
 
-elixir(function(mix) {
-    mix.sass('app.scss');
-});
+ var folders = {
+     jquery: './node_modules/jquery/dist/',
+     bootstrap: './node_modules/bootstrap-sass/assets/'
+ };
+
+ elixir(function (mix) {
+
+     mix.sass('main.scss');
+
+     mix.styles([
+         './public/css/main.css'
+     ], 'public/css/app.css', './');
+
+     mix.scripts([
+         folders.jquery + 'jquery.js',
+         folders.bootstrap + 'javascripts/bootstrap.js',
+         'table-checkbox.js'
+     ]);
+
+     mix.copy(folders.bootstrap + 'fonts/bootstrap/**', 'public/build/fonts/bootstrap');
+     mix.copy('resources/img/**', 'public/img');
+     mix.copy('resources/jquery-ui/**', 'public/build/css/images');
+
+     mix.version(['css/app.css', 'css/app.css.map', 'js/all.js']);
+ });
