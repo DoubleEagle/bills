@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+use App\Http\Requests;
+
+class TransactionController extends Controller
+{
+    public function import() {
+       return view('transaction.import');
+    }
+}
