@@ -60,7 +60,7 @@ class FinanceController extends Controller
     {
         foreach ($request->transactions as $transaction)
         {
-            $model = new Transaction($transacion);
+            $model = new Transaction($transaction);
             DebugBar::info($model);
             return true;
         }
