@@ -9,6 +9,7 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use League\Csv\Reader;
 use App\Models\Transaction;
+use App\Models\User;
 
 class FinanceController extends Controller
 {
@@ -19,7 +20,13 @@ class FinanceController extends Controller
      */
     public function index()
     {
-        return view('overview');
+        $joanne = Transaction::whereHas('user', function($query) {
+            $query->where('email','like','%joanne%')->orWhere('email','like','%spijker%')->orWhere('email','like','%eagle%')->orWhere('email','like','%double%')->orWhere('email','like','%joe%');
+        })->sum('amount');
+        $rien = Transaction::whereHas('user', function($query) {
+            $query->where('email','not like','%joanne%')->orWhere('email','not like','%spijker%')->orWhere('email','not like','%eagle%')->orWhere('email','not like','%double%')->orWhere('email','not like','%joe%');
+        })->sum('amount');
+        return view('overview')->with('joanne',$joanne)->with('rien',$rien);
     }
 
     public function import()
@@ -60,9 +67,11 @@ class FinanceController extends Controller
     {
         foreach ($request->transactions as $transaction)
         {
-            $model = new Transaction($transaction);
-            DebugBar::info($model);
-            return true;
+            if (isset($transaction['checked'])) {
+                $model = new Transaction($transaction);
+                Auth::user()->transactions()->save($model);
+            }
         }
+        return redirect("/")->with('status', 'Transacties succesvol geïmporteerd');
     }
 }

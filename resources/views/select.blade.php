@@ -4,15 +4,16 @@
     <form action="{{ url('opslaan') }}" method="post">
         {{ csrf_field() }}
         <table class="table table-striped click-table">
-            @foreach ($rows as $row)
+            @foreach ($rows as $index => $row)
                 <tr>
-                    <td><input type="hidden" name="transactions[{{ $row['hash'] }}][amount]" value="{{ $row['amount'] }}">{{ $row['amount'] }}</td>
-                    <td><input type="hidden" name="transactions[{{ $row['hash'] }}][title]" value="{{ $row['title'] }}">{{ $row['title'] }}</td>
+                    <td><input type="hidden" name="transactions[{{ $index }}][amount]" value="{{ $row['amount'] }}">{{ $row['amount'] }}</td>
+                    <td><input type="hidden" name="transactions[{{ $index }}][title]" value="{{ $row['title'] }}">{{ $row['title'] }}</td>
                     <td>
                         <div class="checkbox">
                             {{ debug($rows) }}
+                            <input type="hidden" name="transactions[{{ $index }}][hash]" value="{{ $row['hash'] }}">
                             <label>
-                                <input type="checkbox" name="transactions[{{ $row['hash'] }}][checked]" value="true">
+                                <input type="checkbox" name="transactions[{{ $index }}][checked]" value="true">
                             </label>
                         </div>
                     </td>
