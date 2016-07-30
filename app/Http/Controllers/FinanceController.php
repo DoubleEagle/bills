@@ -43,7 +43,7 @@ class FinanceController extends Controller
         if ($ing) {
             foreach ($csv as $index => $row)
             {
-                if ($index != 0)
+                if ($index != 0 && strtolower($row[5]) != "bij")
                 {
                     $rows[$index]['amount'] = $row[6];
                     $rows[$index]['title'] = $row[1]." - ".$row[8];
@@ -54,6 +54,7 @@ class FinanceController extends Controller
         } else {
             foreach ($csv as $index => $row)
             {
+                if (strtolower($row[x]) != "c")
                 $rows[$index]['amount'] = $row[4];
                 $rows[$index]['title'] = $row[6]." - ".$row[10];
                 $rows[$index]['date'] = new DateTime($row[7]);

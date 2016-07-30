@@ -11,7 +11,6 @@
                     <td><input type="hidden" name="transactions[{{ $index }}][title]" value="{{ $row['title'] }}">{{ $row['title'] }}</td>
                     <td>
                         <div class="checkbox">
-                            {{ debug($rows) }}
                             <input type="hidden" name="transactions[{{ $index }}][hash]" value="{{ $row['hash'] }}">
                             <label>
                                 <input type="checkbox" name="transactions[{{ $index }}][checked]" value="true">
