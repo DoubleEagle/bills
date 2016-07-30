@@ -8,7 +8,7 @@
                 <tr>
                     <td><input type="hidden" name="transactions[{{ $index }}][date]" value="{{ $row['date']->format('d-m-Y') }}">{{ $row['date']->format('d-m-Y') }}</td>
                     <td><input type="hidden" name="transactions[{{ $index }}][amount]" value="{{ $row['amount'] }}">{{ $row['amount'] }}</td>
-                    <td><input type="hidden" name="transactions[{{ $index }}][title]" value="{{ $row['title'] }}">{{ explode(" - ",$row['title'])[0] }} - <p class="text-muted">{{ explode(" - ",$row['title'])[1] }}</td>
+                    <td><input type="hidden" name="transactions[{{ $index }}][title]" value="{{ $row['title'] }}">{{ explode(" - ",$row['title'])[0] }}<p class="text-muted">{{ explode(" - ",$row['title'])[1] }}</td>
                     <td>
                         <div class="checkbox">
                             <input type="hidden" name="transactions[{{ $index }}][hash]" value="{{ $row['hash'] }}">
