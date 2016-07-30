@@ -24,7 +24,7 @@ class FinanceController extends Controller
             $query->where('email','like','%joanne%')->orWhere('email','like','%spijker%')->orWhere('email','like','%eagle%')->orWhere('email','like','%double%')->orWhere('email','like','%joe%');
         })->sum('amount');
         $rien = Transaction::whereHas('user', function($query) {
-            $query->where('email','not like','%joanne%')->orWhere('email','not like','%spijker%')->orWhere('email','not like','%eagle%')->orWhere('email','not like','%double%')->orWhere('email','not like','%joe%');
+            $query->where('email','not like','%joanne%')->where('email','not like','%spijker%')->where('email','not like','%eagle%')->where('email','not like','%double%')->where('email','not like','%joe%');
         })->sum('amount');
         return view('overview')->with('joanne',$joanne)->with('rien',$rien);
     }
