@@ -45,7 +45,7 @@ class FinanceController extends Controller
             {
                 if ($index != 0 && strtolower($row[5]) != "bij")
                 {
-                    $rows[$index]['amount'] = $row[6];
+                    $rows[$index]['amount'] = str_replace(",",".",$row[6]);
                     $rows[$index]['title'] = $row[1]." - ".$row[8];
                     $rows[$index]['date'] = new DateTime($row[0]);
                     $rows[$index]['hash'] = hash("sha256",$row[6].$row[1].$row[8].$row[0]);
