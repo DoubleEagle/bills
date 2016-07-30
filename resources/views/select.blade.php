@@ -7,7 +7,7 @@
             @foreach ($rows as $index => $row)
                 <tr>
                     <td><input type="hidden" name="transactions[{{ $index }}][date]" value="{{ $row['date']->format('d-m-Y') }}">{{ $row['date']->format('d-m-Y') }}</td>
-                    <td><input type="hidden" name="transactions[{{ $index }}][amount]" value="{{ $row['amount'] }}">{{ $row['amount'] }}</td>
+                    <td><input type="hidden" name="transactions[{{ $index }}][amount]" value="{{ $row['amount'] }}">{{ explode(" - ",$row['amount'])[0] }} - <p class="text-muted">{{ explode(" - ",$row['amount'])[1] }}</td>
                     <td><input type="hidden" name="transactions[{{ $index }}][title]" value="{{ $row['title'] }}">{{ $row['title'] }}</td>
                     <td>
                         <div class="checkbox">
