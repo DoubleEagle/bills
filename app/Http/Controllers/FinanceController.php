@@ -76,4 +76,8 @@ class FinanceController extends Controller
         }
         return redirect("/")->with('status', 'Transacties succesvol geïmporteerd');
     }
+
+    public function view() {
+      echo "test";
+    }
 }

@@ -17,6 +17,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/', 'FinanceController@index');
     Route::get('home', 'FinanceController@index');
     Route::get('import', 'FinanceController@import');
+    Route::get('transactions', 'FinanceController@view');
     Route::post('verwerken', 'FinanceController@process');
     Route::post('opslaan', 'FinanceController@save');
 });
