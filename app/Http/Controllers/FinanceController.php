@@ -78,6 +78,20 @@ class FinanceController extends Controller
     }
 
     public function view() {
-      echo "test";
+      $rows = [];
+
+      $joanne = Transaction::whereHas('user', function($query) {
+          $query->where('email','like','%joanne%')->orWhere('email','like','%spijker%')->orWhere('email','like','%eagle%')->orWhere('email','like','%double%')->orWhere('email','like','%joe%');
+      })->get();
+      DebugBar::info($joanne);
+
+      $rien = Transaction::whereHas('user', function($query) {
+          $query->where('email','not like','%joanne%')->where('email','not like','%spijker%')->where('email','not like','%eagle%')->where('email','not like','%double%')->where('email','not like','%joe%');
+      })->get();
+
+      $rows['joanne'] = $joanne;
+      $rows['rien'] = $rien;
+
+      return view('transactions')->with('rows',$rows);
     }
 }
